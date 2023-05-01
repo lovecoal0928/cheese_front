@@ -9,6 +9,16 @@
     "web": "expo start --web",
     "lint": "eslint --ext .tsx --ext .ts src/"
   },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --ext .tsx --ext .ts src/ --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "@react-navigation/material-bottom-tabs": "^6.2.15",
     "@react-navigation/material-top-tabs": "^6.6.2",
