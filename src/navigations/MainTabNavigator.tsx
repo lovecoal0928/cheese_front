@@ -1,6 +1,6 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import React from 'react';
-
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 const Tab = createMaterialBottomTabNavigator();
 
 export const MainTabNavigator = () => {
@@ -11,7 +11,7 @@ export const MainTabNavigator = () => {
             barStyle={{ backgroundColor: 'tomato' }}
         >
             <Tab.Screen
-                name="Feed"
+                name="Home"
                 component={Feed}
                 options={{
                     tabBarLabel: 'Home',
@@ -21,7 +21,7 @@ export const MainTabNavigator = () => {
                 }}
             />
             <Tab.Screen
-                name="Notifications"
+                name="Map"
                 component={Notifications}
                 options={{
                     tabBarLabel: 'Updates',
@@ -30,24 +30,34 @@ export const MainTabNavigator = () => {
                     ),
                 }}
             />
-            <Tab.Screen
 
-                name="Profile"
-                component={Profile}
-                options={{
-                    tabBarLabel: 'Profile',
-                    tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="account" color={color} size={26} />
-                    ),
-                }}
-            />
             <Tab.Screen
-                name="Settings"
+                name="Submit"
                 component={Settings}
                 options={{
                     tabBarLabel: 'Settings',
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="account-settings" color={color} size={26} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Route"
+                component={Settings}
+                options={{
+                    tabBarLabel: 'Settings',
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons name="account-settings" color={color} size={26} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="MyPage"
+                component={Profile}
+                options={{
+                    tabBarLabel: 'Profile',
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons name="account" color={color} size={26} />
                     ),
                 }}
             />
