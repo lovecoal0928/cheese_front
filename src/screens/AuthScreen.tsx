@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 export const AuthScreen = () => {
-  return (
-    <div>AuthScreen</div>
-  )
-}
+    return (
+        <div>AuthScreen</div>
+    );
+};
