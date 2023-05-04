@@ -1,5 +1,6 @@
 {
   "compile-hero.disable-compile-files-on-did-save-code": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   }

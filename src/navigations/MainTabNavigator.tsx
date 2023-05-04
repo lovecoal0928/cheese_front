@@ -1,8 +1,8 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import React from 'react';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { HomeScreen } from 'screens/HomeScreen';
-import { MapScreen } from 'screens/MapScreen';
+import { MapScreen } from '../screens/MapScreen';
+import { HomeScreen } from '../screens/HomeScreen';
 const Tab = createMaterialBottomTabNavigator();
 
 export const MainTabNavigator = () => {
