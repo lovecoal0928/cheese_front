@@ -8,9 +8,9 @@ const Tab = createMaterialBottomTabNavigator();
 export const MainTabNavigator = () => {
     return (
         <Tab.Navigator
-            initialRouteName="Feed"
+            initialRouteName="Home"
             activeColor="#e91e63"
-            barStyle={{ backgroundColor: 'tomato' }}
+            barStyle={{ backgroundColor: '#fff' }}
         >
             <Tab.Screen
                 name="Home"
