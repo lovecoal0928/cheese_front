@@ -1,6 +1,8 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import React from 'react';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { HomeScreen } from 'screens/HomeScreen';
+import { MapScreen } from 'screens/MapScreen';
 const Tab = createMaterialBottomTabNavigator();
 
 export const MainTabNavigator = () => {
@@ -12,7 +14,7 @@ export const MainTabNavigator = () => {
         >
             <Tab.Screen
                 name="Home"
-                component={Feed}
+                component={HomeScreen}
                 options={{
                     tabBarLabel: 'Home',
                     tabBarIcon: ({ color }) => (
@@ -22,7 +24,7 @@ export const MainTabNavigator = () => {
             />
             <Tab.Screen
                 name="Map"
-                component={Notifications}
+                component={MapScreen}
                 options={{
                     tabBarLabel: 'Updates',
                     tabBarIcon: ({ color }) => (
@@ -33,7 +35,7 @@ export const MainTabNavigator = () => {
 
             <Tab.Screen
                 name="Submit"
-                component={Settings}
+                component={MapScreen}
                 options={{
                     tabBarLabel: 'Settings',
                     tabBarIcon: ({ color }) => (
@@ -43,7 +45,7 @@ export const MainTabNavigator = () => {
             />
             <Tab.Screen
                 name="Route"
-                component={Settings}
+                component={MapScreen}
                 options={{
                     tabBarLabel: 'Settings',
                     tabBarIcon: ({ color }) => (
@@ -53,7 +55,7 @@ export const MainTabNavigator = () => {
             />
             <Tab.Screen
                 name="MyPage"
-                component={Profile}
+                component={MapScreen}
                 options={{
                     tabBarLabel: 'Profile',
                     tabBarIcon: ({ color }) => (
