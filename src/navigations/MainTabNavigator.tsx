@@ -16,7 +16,7 @@ export const MainTabNavigator = () => {
                 name="Home"
                 component={HomeScreen}
                 options={{
-                    tabBarLabel: 'Home',
+                    tabBarLabel: 'ホーム',
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="home" color={color} size={26} />
                     ),
@@ -26,7 +26,7 @@ export const MainTabNavigator = () => {
                 name="Map"
                 component={MapScreen}
                 options={{
-                    tabBarLabel: 'Updates',
+                    tabBarLabel: 'マップ',
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="bell" color={color} size={26} />
                     ),
@@ -37,7 +37,7 @@ export const MainTabNavigator = () => {
                 name="Submit"
                 component={MapScreen}
                 options={{
-                    tabBarLabel: 'Settings',
+                    tabBarLabel: '投稿',
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="account-settings" color={color} size={26} />
                     ),
@@ -47,7 +47,7 @@ export const MainTabNavigator = () => {
                 name="Route"
                 component={MapScreen}
                 options={{
-                    tabBarLabel: 'Settings',
+                    tabBarLabel: 'ルート一覧',
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="account-settings" color={color} size={26} />
                     ),
@@ -57,7 +57,7 @@ export const MainTabNavigator = () => {
                 name="MyPage"
                 component={MapScreen}
                 options={{
-                    tabBarLabel: 'Profile',
+                    tabBarLabel: 'マイページ',
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="account" color={color} size={26} />
                     ),
