@@ -5,9 +5,6 @@ import { MapScreen } from '../screens/MapScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 const Tab = createMaterialBottomTabNavigator();
 
-type Props = {
-    navigation: any;
-}
 
 export const MainTabNavigator = () => {
     return (

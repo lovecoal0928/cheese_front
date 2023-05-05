@@ -1,7 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { AuthScreen } from '../screens/AuthScreen';
-import { MainTabNavigator } from './MainTabNavigator';
 import { MainStackNavigator } from './MainStackNavigator';
 
 export const AppNavigator = () => {
