@@ -38,7 +38,7 @@ export const MainTabNavigator = () => {
             />
 
             <Tab.Screen
-                name="Submit"
+                name="dummy"
                 component={MapScreen}
                 options={{
                     tabBarLabel: '投稿',
@@ -51,6 +51,8 @@ export const MainTabNavigator = () => {
                     tabPress: e => {
                         e.preventDefault();
                         navigation.navigate('Submit');
+                        console.log(navigation);
+
                     }
                 })}
             />
