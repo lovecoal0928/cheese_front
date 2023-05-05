@@ -5,7 +5,11 @@ import { MapScreen } from '../screens/MapScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 const Tab = createMaterialBottomTabNavigator();
 
-export const MainTabNavigator = () => {
+type Props = {
+    navigation: any;
+}
+
+export const MainTabNavigator = ({ navigation }: Props) => {
     return (
         <Tab.Navigator
             initialRouteName="Home"
@@ -39,9 +43,16 @@ export const MainTabNavigator = () => {
                 options={{
                     tabBarLabel: '投稿',
                     tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="account-settings" color={color} size={26} />
+                        <MaterialCommunityIcons name="account-settings" color={color} size={26}
+                        />
                     ),
                 }}
+                listeners={() => ({
+                    tabPress: e => {
+                        e.preventDefault();
+                        navigation.navigate('Submit');
+                    }
+                })}
             />
             <Tab.Screen
                 name="Route"
