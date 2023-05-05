@@ -9,7 +9,7 @@ type Props = {
     navigation: any;
 }
 
-export const MainTabNavigator = ({ navigation }: Props) => {
+export const MainTabNavigator = () => {
     return (
         <Tab.Navigator
             initialRouteName="Home"
@@ -47,7 +47,7 @@ export const MainTabNavigator = ({ navigation }: Props) => {
                         />
                     ),
                 }}
-                listeners={() => ({
+                listeners={({ navigation }) => ({
                     tabPress: e => {
                         e.preventDefault();
                         navigation.navigate('Submit');
