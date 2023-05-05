@@ -15,7 +15,12 @@ export const MainStackNavigator = () => {
             }}
         >
             <rootStack.Screen name='Main' component={MainTabNavigator} />
-            <rootStack.Screen name='Submit' component={SubmitScreen} options={{ headerShown: true }} />
+            <rootStack.Screen name='Submit' component={SubmitScreen}
+                options={{
+                    headerShown: true,
+                    title: '新規投稿',
+                }}
+            />
         </rootStack.Navigator>
     );
 };
