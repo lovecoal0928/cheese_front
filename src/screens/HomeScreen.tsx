@@ -2,18 +2,22 @@ import React, { useRef, useState } from 'react';
 import { Image, PanResponder, StyleSheet } from 'react-native';
 import { Animated, Dimensions, SafeAreaView, View } from 'react-native';
 
+const pictures = [
+    { id: 1, uri: ('https://picsum.photos/200/300') },
+    { id: 2, uri: ('https://picsum.photos/200/300') },
+    { id: 3, uri: ('https://picsum.photos/200/300') },
+    { id: 4, uri: ('https://picsum.photos/200/300') },
+    { id: 5, uri: ('https://picsum.photos/200/300') },
+    { id: 6, uri: ('https://picsum.photos/200/300') },
+];
+
 export const HomeScreen = () => {
+
+    // 今の画像のインデックスを管理する
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     const SCREEN_HEIGHT = Dimensions.get('window').height;
     const SCREEN_WIDTH = Dimensions.get('window').width;
-    const pictures = [
-        { id: 1, uri: ('https://picsum.photos/200/300') },
-        { id: 2, uri: ('https://picsum.photos/200/300') },
-        { id: 3, uri: ('https://picsum.photos/200/300') },
-        { id: 4, uri: ('https://picsum.photos/200/300') },
-        { id: 5, uri: ('https://picsum.photos/200/300') },
-        { id: 6, uri: ('https://picsum.photos/200/300') },
-    ];
 
     // 画像のポシションを管理する
     const position = useRef(new Animated.ValueXY()).current;
@@ -24,8 +28,37 @@ export const HomeScreen = () => {
             onPanResponderMove: (e, gestureState) => {
                 position.setValue({ x: gestureState.dx, y: gestureState.dy });
             },
-            // onPanResponderRelease: (e, gestureState) => {
-            // },
+            // カードを離したときの処理
+            onPanResponderRelease: (e, gestureState) => {
+                // カードを左にスワイプしたとき
+                if (gestureState.dx > 120) {
+                    Animated.spring(position, {
+                        toValue: { x: SCREEN_WIDTH + 100, y: gestureState.dy },
+                        useNativeDriver: false,
+                    }).start(() => {
+                        setCurrentIndex(currentIndex + 1);
+                        position.setValue({ x: 0, y: 0 });
+                    });
+                }
+                // カードを右にスワイプしたとき
+                else if (gestureState.dx < -120) {
+                    Animated.spring(position, {
+                        toValue: { x: -SCREEN_WIDTH - 100, y: gestureState.dy },
+                        useNativeDriver: false,
+                    }).start(() => {
+                        setCurrentIndex(currentIndex + 1);
+                        position.setValue({ x: 0, y: 0 });
+                    });
+                }
+                // カードをスワイプしなかったとき
+                else {
+                    Animated.spring(position, {
+                        toValue: { x: 0, y: 0 },
+                        friction: 4,
+                        useNativeDriver: false,
+                    }).start();
+                }
+            },
         })
     ).current;
 
@@ -51,8 +84,6 @@ export const HomeScreen = () => {
     });
 
 
-    // 今の画像のインデックスを管理する
-    const [currentIndex, setCurrentIndex] = useState(0);
 
     const RenderPictures = () => {
         return pictures.map((picture, i) => {
