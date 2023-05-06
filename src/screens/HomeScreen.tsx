@@ -15,26 +15,35 @@ export const HomeScreen = () => {
         { id: 6, uri: ('https://picsum.photos/200/300') },
     ];
 
+    const RenderPictures = () => {
+        return pictures.map((picture, i) => (
+            <Animated.View
+                key={picture.id}
+                style={[{
+                    height: SCREEN_HEIGHT * 0.79,
+                    width: SCREEN_WIDTH,
+                    padding: 10,
+                    position: 'absolute',
+                }]}
+            >
+                <Image
+                    style={{
+                        flex: 1,
+                        resizeMode: 'cover',
+                        borderRadius: 20,
+                    }}
+                    source={{ uri: pictures[0].uri }}
+                />
+
+            </Animated.View>
+        ));
+    };
+
+
     return (
         <SafeAreaView>
             <View style={{ flex: 1 }}>
-                <Animated.View
-                    style={[{
-                        height: SCREEN_HEIGHT * 0.79,
-                        width: SCREEN_WIDTH,
-                        padding: 10,
-                    }]}
-                >
-                    <Image
-                        style={{
-                            flex: 1,
-                            resizeMode: 'cover',
-                            borderRadius: 20,
-                        }}
-                        source={{ uri: pictures[0].uri }}
-                    />
-
-                </Animated.View>
+                {RenderPictures()}
             </View>
         </SafeAreaView >
     );
