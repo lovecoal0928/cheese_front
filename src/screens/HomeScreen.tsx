@@ -4,7 +4,6 @@ import { Animated, Dimensions, SafeAreaView, View } from 'react-native';
 
 const pictures = [
     { id: 1, uri: ('https://picsum.photos/200/300') },
-    { id: 2, uri: ('https://picsum.photos/200/300') },
     { id: 3, uri: ('https://picsum.photos/200/300') },
     { id: 4, uri: ('https://picsum.photos/200/300') },
     { id: 5, uri: ('https://picsum.photos/200/300') },
@@ -12,6 +11,7 @@ const pictures = [
 ];
 
 export const HomeScreen = () => {
+
 
     // 今の画像のインデックスを管理する
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -36,7 +36,7 @@ export const HomeScreen = () => {
                         toValue: { x: SCREEN_WIDTH + 100, y: gestureState.dy },
                         useNativeDriver: false,
                     }).start(() => {
-                        setCurrentIndex(currentIndex + 1);
+                        setCurrentIndex(prev => prev + 1);
                         position.setValue({ x: 0, y: 0 });
                     });
                 }
@@ -46,7 +46,7 @@ export const HomeScreen = () => {
                         toValue: { x: -SCREEN_WIDTH - 100, y: gestureState.dy },
                         useNativeDriver: false,
                     }).start(() => {
-                        setCurrentIndex(currentIndex + 1);
+                        setCurrentIndex(prev => prev + 1);
                         position.setValue({ x: 0, y: 0 });
                     });
                 }
@@ -113,7 +113,7 @@ export const HomeScreen = () => {
                                 resizeMode: 'cover',
                                 borderRadius: 20,
                             }}
-                            source={{ uri: pictures[0].uri }}
+                            source={{ uri: picture.uri }}
                         />
                     </Animated.View>
                 );
