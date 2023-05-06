@@ -36,6 +36,21 @@ export const HomeScreen = () => {
         extrapolate: 'clamp',
     });
 
+    // 次カードの透明度を管理する
+    const nextCardOpacity = position.x.interpolate({
+        inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
+        outputRange: [1, 0, 1],
+        extrapolate: 'clamp',
+    });
+
+    // 次カードのサイズを管理する
+    const nextCardScale = position.x.interpolate({
+        inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
+        outputRange: [1, 0.8, 1],
+        extrapolate: 'clamp',
+    });
+
+
     // 今の画像のインデックスを管理する
     const [currentIndex, setCurrentIndex] = useState(0);
 
