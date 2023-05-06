@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Image, PanResponder } from 'react-native';
+import { Image, PanResponder, StyleSheet } from 'react-native';
 import { Animated, Dimensions, SafeAreaView, View } from 'react-native';
 
 export const HomeScreen = () => {
@@ -33,34 +33,61 @@ export const HomeScreen = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const RenderPictures = () => {
-        return pictures.map((picture, i) => (
-            <Animated.View
-                {...panResponder.panHandlers}
-                key={i}
-                style={[
-                    {
-                        ...position.getLayout(),
-                    }
-                    , {
-                        height: SCREEN_HEIGHT * 0.79,
-                        width: SCREEN_WIDTH,
-                        padding: 10,
-                        position: 'absolute',
-                    }]}
-            >
-                <Image
-                    style={{
-                        flex: 1,
-                        resizeMode: 'cover',
-                        borderRadius: 20,
-                    }}
-                    source={{ uri: pictures[0].uri }}
-                />
-
-            </Animated.View>
-        ));
+        return pictures.map((picture, i) => {
+            if (i < currentIndex) {
+                return null;
+            }
+            if (i === currentIndex) {
+                return (
+                    <Animated.View
+                        {...panResponder.panHandlers}
+                        key={i}
+                        style={[
+                            {
+                                ...position.getLayout(),
+                            }
+                            , {
+                                height: SCREEN_HEIGHT - 150,
+                                width: SCREEN_WIDTH,
+                                padding: 10,
+                                position: 'absolute',
+                            }]}
+                    >
+                        <Image
+                            style={{
+                                flex: 1,
+                                resizeMode: 'cover',
+                                borderRadius: 20,
+                            }}
+                            source={{ uri: pictures[0].uri }}
+                        />
+                    </Animated.View>
+                );
+            } else {
+                return (
+                    <Animated.View
+                        key={i}
+                        style={[
+                            {
+                                height: SCREEN_HEIGHT - 150,
+                                width: SCREEN_WIDTH,
+                                padding: 10,
+                                position: 'absolute',
+                            }]}
+                    >
+                        <Image
+                            style={{
+                                flex: 1,
+                                resizeMode: 'cover',
+                                borderRadius: 20,
+                            }}
+                            source={{ uri: pictures[0].uri }}
+                        />
+                    </Animated.View>
+                );
+            }
+        }).reverse();
     };
-
 
     return (
         <SafeAreaView>
