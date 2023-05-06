@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Image, PanResponder } from 'react-native';
 import { Animated, Dimensions, SafeAreaView, View } from 'react-native';
 
@@ -15,7 +15,9 @@ export const HomeScreen = () => {
         { id: 6, uri: ('https://picsum.photos/200/300') },
     ];
 
+    // 画像のポシションを管理する
     const position = useRef(new Animated.ValueXY()).current;
+    // 画像がタッチされた時のイベントを管理する
     const panResponder = useRef(
         PanResponder.create({
             onStartShouldSetPanResponder: () => true,
@@ -27,12 +29,14 @@ export const HomeScreen = () => {
         })
     ).current;
 
+    // 今の画像のインデックスを管理する
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     const RenderPictures = () => {
         return pictures.map((picture, i) => (
             <Animated.View
                 {...panResponder.panHandlers}
-                key={picture.id}
+                key={i}
                 style={[
                     {
                         ...position.getLayout(),
