@@ -29,6 +29,13 @@ export const HomeScreen = () => {
         })
     ).current;
 
+    // 移動量に対して回転する
+    const rotate = position.x.interpolate({
+        inputRange: [-SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2],
+        outputRange: ['-10deg', '0deg', '10deg'],
+        extrapolate: 'clamp',
+    });
+
     // 今の画像のインデックスを管理する
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -45,6 +52,7 @@ export const HomeScreen = () => {
                         style={[
                             {
                                 ...position.getLayout(),
+                                transform: [{ rotate: rotate }],
                             }
                             , {
                                 height: SCREEN_HEIGHT - 150,
