@@ -14,7 +14,11 @@ export const MainStackNavigator = () => {
                 presentation: 'modal',
             }}
         >
-            <rootStack.Screen name='Main' component={MainTabNavigator} />
+            <rootStack.Screen name='Main' component={MainTabNavigator}
+                options={{
+                    title: '戻る'
+                }}
+            />
             <rootStack.Screen name='Submit' component={SubmitScreen}
                 options={{
                     headerShown: true,
