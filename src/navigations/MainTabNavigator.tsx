@@ -48,7 +48,6 @@ export const MainTabNavigator = () => {
                     tabPress: e => {
                         e.preventDefault();
                         navigation.navigate('Submit');
-                        console.log(navigation);
 
                     }
                 })}
