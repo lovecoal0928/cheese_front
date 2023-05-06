@@ -92,6 +92,10 @@ export const HomeScreen = () => {
                         key={i}
                         style={[
                             {
+                                transform: [{ scale: nextCardScale }],
+                                opacity: nextCardOpacity,
+                            },
+                            {
                                 height: SCREEN_HEIGHT - 150,
                                 width: SCREEN_WIDTH,
                                 padding: 10,
