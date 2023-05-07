@@ -139,7 +139,7 @@ export const HomeScreen = () => {
                                 resizeMode: 'cover',
                                 borderRadius: 20,
                             }}
-                            source={{ uri: pictures[0].uri }}
+                            source={{ uri: picture.uri }}
                         />
                     </Animated.View>
                 );
