@@ -11,9 +11,13 @@ export default function App() {
         colors: {
             ...DefaultTheme.colors,
             primary: '#333',
-            primarycontainer: '#000',
+            onPrimary: '#fff',
+            primaryContainer: '#000',
             secondary: '#FFEDAF',
+            secondaryContainer: '#fff',
             background: '#f4f4f4',
+            surfaceVariant: '#fff'
+
         }
     };
 
