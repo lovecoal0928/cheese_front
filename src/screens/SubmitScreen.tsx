@@ -19,6 +19,7 @@ export const SubmitScreen = () => {
             />
             <Button
                 mode="contained"
+                onPress={() => console.log('Pressed')}
             >
                 写真を追加</Button>
         </View>
