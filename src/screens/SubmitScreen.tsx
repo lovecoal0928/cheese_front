@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text, TextInput } from 'react-native-paper';
+import { Button, Text, TextInput } from 'react-native-paper';
 
 export const SubmitScreen = () => {
     return (
@@ -17,6 +17,10 @@ export const SubmitScreen = () => {
                 numberOfLines={10}
                 style={{ height: 120 }}
             />
+            <Button
+                mode="contained"
+            >
+                写真を追加</Button>
         </View>
     );
 };
