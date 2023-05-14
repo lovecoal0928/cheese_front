@@ -1,7 +1,16 @@
 import React from 'react';
 import { Card } from 'react-native-paper';
 
-export const SubmitCard = () => {
+type Props = {
+    item: {
+        id: number;
+        title: string;
+        image: string;
+    };
+};
+
+
+export const SubmitCard = ({ item }: Props) => {
     return (
         <Card>
             <Card.Title title="Card Title" subtitle="Card Subtitle" />
