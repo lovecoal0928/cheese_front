@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Image, PanResponder, StyleSheet } from 'react-native';
+import { Image, PanResponder } from 'react-native';
 import { Animated, Dimensions, SafeAreaView, View } from 'react-native';
 
 const pictures = [
