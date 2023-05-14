@@ -10,8 +10,14 @@ export default function App() {
         roundness: 2,
         colors: {
             ...DefaultTheme.colors,
-            primary: '#3498db',
-            accent: '#f1c40f',
+            primary: '#333',
+            onPrimary: '#fff',
+            primaryContainer: '#000',
+            secondary: '#FFEDAF',
+            secondaryContainer: '#fff',
+            background: '#f4f4f4',
+            surfaceVariant: '#fff'
+
         }
     };
 

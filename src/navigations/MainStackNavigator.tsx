@@ -2,6 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { MainTabNavigator } from './MainTabNavigator';
 import { SubmitScreen } from '../screens/SubmitScreen';
+import { Button, IconButton } from 'react-native-paper';
 
 const rootStack = createStackNavigator();
 
@@ -23,8 +24,10 @@ export const MainStackNavigator = () => {
                 options={{
                     headerShown: true,
                     title: '新規投稿',
+                    headerRight: () =>
+                        <Button textColor='#0098fd' onPress={() => console.log('')} > 保存</Button>,
                 }}
             />
-        </rootStack.Navigator>
+        </rootStack.Navigator >
     );
 };
