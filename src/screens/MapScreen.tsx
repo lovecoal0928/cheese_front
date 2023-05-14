@@ -1,11 +1,19 @@
 import React from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import MapView from 'react-native-maps';
 
 export const MapScreen = () => {
     return (
-        <MapView>
+        <View style={{ flex: 1 }}>
+            <MapView style={styles.mapview} >
 
-        </MapView>
+            </MapView>
+        </View>
     );
 };
+
+const styles = StyleSheet.create({
+    mapview: {
+        flex: 1,
+    }
+});
