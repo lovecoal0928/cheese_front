@@ -3,6 +3,7 @@ import React from 'react';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { MapScreen } from '../screens/MapScreen';
 import { HomeScreen } from '../screens/HomeScreen';
+import { MypageScreen } from '../screens/MypageScreen';
 const Tab = createMaterialBottomTabNavigator();
 
 
@@ -64,7 +65,7 @@ export const MainTabNavigator = () => {
             />
             <Tab.Screen
                 name="MyPage"
-                component={MapScreen}
+                component={MypageScreen}
                 options={{
                     tabBarLabel: 'マイページ',
                     tabBarIcon: ({ color }) => (
