@@ -26,6 +26,7 @@
     "@react-navigation/stack": "^6.3.16",
     "eslint-plugin-react-hooks": "^4.6.0",
     "expo": "~48.0.15",
+    "expo-location": "~15.1.1",
     "expo-status-bar": "~1.4.4",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
