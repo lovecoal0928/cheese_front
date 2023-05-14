@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SubmitCard } from '../components/mypage/SubmitCard';
 
@@ -22,12 +22,20 @@ export const MypageScreen = () => {
         },
     ];
 
+    const renderSubmitCard = (item: any) => (
+        <View style={{ flex: 0.5 }}>
+            <SubmitCard item={item} />
+        </View>
+    );
+
     return (
         <SafeAreaView>
             <FlatList
                 data={data}
-                renderItem={({ item }) => <SubmitCard item={item} />}
+                renderItem={({ item }) => renderSubmitCard(item)}
                 keyExtractor={item => item.id.toString()}
+                numColumns={2}
+
             />
         </SafeAreaView>
     );
