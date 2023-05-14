@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import MapView from 'react-native-maps';
 
-export const MapScreen = () => {
-    // 現在地を管理する
-    const [currentLocation, setCurrentLocation] = useState({
-        latitude: 0,
-        longitude: 0,
-    });
+type ILocation = {
+    latitude: number;
+    longitude: number;
+};
 
+export const MapScreen = () => {
+
+    const [location, setLocation] = useState<ILocation | undefined>(undefined);
 
 
 
