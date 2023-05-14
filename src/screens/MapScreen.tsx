@@ -28,17 +28,7 @@ export const MapScreen = () => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View>
-                <SegmentedButtons
-                    value={selectedButton}
-                    onValueChange={(value) => setSelectedButton(value)}
-                    buttons={[
-                        { label: 'すべて', value: 'all' },
-                        { label: 'おすすめ', value: 'recommend' },
-                    ]}
 
-                />
-            </View>
             {
                 // 現在位置が取得できない場合はエラーを表示する
                 location !== null ?
@@ -51,7 +41,15 @@ export const MapScreen = () => {
                     </MapView>
                     : <Text>現在位置を取得できませんでした</Text>
             }
-
+            <SegmentedButtons
+                value={selectedButton}
+                onValueChange={(value) => setSelectedButton(value)}
+                buttons={[
+                    { label: 'すべて', value: 'all' },
+                    { label: 'おすすめ', value: 'recommend' },
+                ]}
+                style={styles.selectedBtn}
+            />
         </SafeAreaView >
     );
 };
@@ -59,5 +57,13 @@ export const MapScreen = () => {
 const styles = StyleSheet.create({
     mapview: {
         flex: 1,
+    },
+    selectedBtn: {
+        position: 'absolute',
+        top: 80,
+        left: 0,
+        zIndex: 100,
+        width: 240,
+        padding: 4,
     }
 });
