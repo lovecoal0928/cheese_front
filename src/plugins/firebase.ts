@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-import { getAuth } from 'firebase/auth';
-import { getFunctions } from 'firebase/functions';
+import { connectAuthEmulator, getAuth } from 'firebase/auth';
+import { connectFunctionsEmulator, getFunctions } from 'firebase/functions';
 import {
     FIREBASE_API_KEY,
     FIREBASE_AUTH_DOMAIN,
@@ -11,6 +11,7 @@ import {
     FIREBASE_MESSAGING_SENDER_ID,
     FIREBASE_APP_ID,
     FIREBASE_MEASUREMENT_ID,
+    DEVELOP_MODE,
 } from '@env';
 
 const firebaseConfig = {
@@ -29,4 +30,8 @@ export const storage = getStorage(app);
 export const auth = getAuth(app);
 export const functions = getFunctions(app);
 
-console.log();
+if (DEVELOP_MODE) {
+    connectFunctionsEmulator(functions, 'localhost', 5001);
+    connectFirestoreEmulator(db, 'localhost', 8080);
+    connectAuthEmulator(auth, 'http://localhost:9099');
+}
