@@ -3,9 +3,8 @@ import React from 'react';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { MapScreen } from '../screens/MapScreen';
 import { HomeScreen } from '../screens/HomeScreen';
-import { MypageScreen } from '../screens/MypageScreen';
+import { MyPageScreen } from '../screens/MyPageScreen';
 const Tab = createMaterialBottomTabNavigator();
-
 
 export const MainTabNavigator = () => {
     return (
@@ -20,7 +19,11 @@ export const MainTabNavigator = () => {
                 options={{
                     tabBarLabel: 'ホーム',
                     tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="home" color={color} size={26} />
+                        <MaterialCommunityIcons
+                            name="home"
+                            color={color}
+                            size={26}
+                        />
                     ),
                 }}
             />
@@ -30,7 +33,11 @@ export const MainTabNavigator = () => {
                 options={{
                     tabBarLabel: 'マップ',
                     tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="bell" color={color} size={26} />
+                        <MaterialCommunityIcons
+                            name="bell"
+                            color={color}
+                            size={26}
+                        />
                     ),
                 }}
             />
@@ -41,16 +48,18 @@ export const MainTabNavigator = () => {
                 options={{
                     tabBarLabel: '投稿',
                     tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="account-settings" color={color} size={26}
+                        <MaterialCommunityIcons
+                            name="account-settings"
+                            color={color}
+                            size={26}
                         />
                     ),
                 }}
                 listeners={({ navigation }) => ({
-                    tabPress: e => {
+                    tabPress: (e) => {
                         e.preventDefault();
                         navigation.navigate('Submit');
-
-                    }
+                    },
                 })}
             />
             <Tab.Screen
@@ -59,17 +68,25 @@ export const MainTabNavigator = () => {
                 options={{
                     tabBarLabel: 'ルート一覧',
                     tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="account-settings" color={color} size={26} />
+                        <MaterialCommunityIcons
+                            name="account-settings"
+                            color={color}
+                            size={26}
+                        />
                     ),
                 }}
             />
             <Tab.Screen
                 name="MyPage"
-                component={MypageScreen}
+                component={MyPageScreen}
                 options={{
                     tabBarLabel: 'マイページ',
                     tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="account" color={color} size={26} />
+                        <MaterialCommunityIcons
+                            name="account"
+                            color={color}
+                            size={26}
+                        />
                     ),
                 }}
             />
