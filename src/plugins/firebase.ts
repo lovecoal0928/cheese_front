@@ -13,6 +13,7 @@ import {
     FIREBASE_MEASUREMENT_ID,
     DEVELOP_MODE,
 } from '@env';
+// NOTE: linterでエラーが出ているが、読み込みはされている
 
 const firebaseConfig = {
     apiKey: FIREBASE_API_KEY,
@@ -29,6 +30,7 @@ export const db = getFirestore(app);
 export const storage = getStorage(app);
 export const auth = getAuth(app);
 export const functions = getFunctions(app);
+functions.region = 'asia-northeast1';
 
 if (DEVELOP_MODE) {
     connectFunctionsEmulator(functions, 'localhost', 5001);
