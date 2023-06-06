@@ -10,6 +10,5 @@ export const AppNavigator = () => {
         <NavigationContainer>
             {user ? <MainStackNavigator /> : <AuthScreen />}
         </NavigationContainer>
-
     );
 };
