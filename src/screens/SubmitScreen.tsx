@@ -58,7 +58,7 @@ export const SubmitScreen = () => {
 
     // 写真加工ボタン
     const handlePhotoEditBtn = async () => {
-        const result = await PhotoEditor.open({
+        await PhotoEditor.open({
             path: 'https://cdn-icons-png.flaticon.com/512/5272/5272912.png',
             stickers: [],
         });
