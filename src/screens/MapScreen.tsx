@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { Button, SegmentedButtons, Text } from 'react-native-paper';
 
 export const MapScreen = () => {
-
-    const [location, setLocation] = useState<Location.LocationObjectCoords | null>(null);
+    const [location, setLocation] =
+        useState<Location.LocationObjectCoords | null>(null);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
     // 現在選択中のボタンの値を管理する
@@ -14,32 +14,37 @@ export const MapScreen = () => {
 
     useEffect(() => {
         (async () => {
-            const { status } = await Location.requestForegroundPermissionsAsync();
+            const { status } =
+                await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
                 return;
             }
             const location = await Location.getCurrentPositionAsync({});
             setLocation(location.coords);
-
         })();
     }, []);
 
-
-
     return (
         <SafeAreaView style={{ flex: 1 }}>
-
             {
                 // 現在位置が取得できない場合はエラーを表示する
-                location !== null ?
+                location !== null ? (
                     <MapView
                         style={styles.mapview}
-                        initialRegion={{ latitude: location.latitude, longitude: location.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }}
+                        initialRegion={{
+                            latitude: location.latitude,
+                            longitude: location.longitude,
+                            latitudeDelta: 0.0922,
+                            longitudeDelta: 0.0421,
+                        }}
                         showsUserLocation={true}
                         showsCompass={true}
                     >
+                        <Marker coordinate={location} />
                     </MapView>
-                    : <Text>現在位置を取得できませんでした</Text>
+                ) : (
+                    <Text>現在位置を取得できませんでした</Text>
+                )
             }
             <SegmentedButtons
                 value={selectedButton}
@@ -50,7 +55,7 @@ export const MapScreen = () => {
                 ]}
                 style={styles.selectedBtn}
             />
-        </SafeAreaView >
+        </SafeAreaView>
     );
 };
 
@@ -65,5 +70,5 @@ const styles = StyleSheet.create({
         zIndex: 100,
         width: 240,
         padding: 4,
-    }
+    },
 });

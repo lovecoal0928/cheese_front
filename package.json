@@ -20,7 +20,6 @@
         }
     },
     "dependencies": {
-        "@baronha/react-native-photo-editor": "^1.1.6",
         "@react-navigation/material-bottom-tabs": "^6.2.15",
         "@react-navigation/material-top-tabs": "^6.6.2",
         "@react-navigation/native": "^6.1.6",
@@ -28,6 +27,8 @@
         "@tanstack/react-query": "^4.29.12",
         "eslint-plugin-react-hooks": "^4.6.0",
         "expo": "~48.0.15",
+        "expo-image-editor": "^1.7.1",
+        "expo-image-picker": "~14.1.1",
         "expo-location": "~15.1.1",
         "expo-status-bar": "~1.4.4",
         "firebase": "^9.0.0",

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useCreateSnapPost } from '../hooks/domain/snapPost/useCreateSnapPost';
@@ -11,7 +11,7 @@ import {
     useFetchSnapPost,
 } from '../hooks/domain/snapPost/useFetchSnapPost';
 import { useLikeSnapPost } from '../hooks/domain/snapPost/useLikeSnapPost';
-import PhotoEditor from '@baronha/react-native-photo-editor';
+import * as ImagePicker from 'expo-image-picker';
 
 const dummyData: CreateSnapPostRequest = {
     title: '京都御所',
@@ -36,6 +36,9 @@ export const SubmitScreen = () => {
     // const { data: snapPosts } = useFetchMySnapPosts();
     const { data: snapPosts } = useFetchLikedSnapPosts();
 
+    // useState
+    const [image, setImage] = useState<string | null>(null);
+
     useEffect(() => {
         console.log('render');
         // createSnapPost(dummyData, {
@@ -58,10 +61,19 @@ export const SubmitScreen = () => {
 
     // 写真加工ボタン
     const handlePhotoEditBtn = async () => {
-        const result = await PhotoEditor.open({
-            path: 'https://cdn-icons-png.flaticon.com/512/5272/5272912.png',
-            stickers: [],
-        });
+        const response =
+            await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (response.granted) {
+            const pickerResult = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [4, 3],
+            });
+
+            if (!pickerResult.canceled) {
+                setImage(pickerResult.assets[0].uri);
+            }
+        }
     };
     return (
         <View>
