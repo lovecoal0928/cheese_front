@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useCreateSnapPost } from '../hooks/domain/snapPost/useCreateSnapPost';
@@ -11,6 +11,7 @@ import {
     useFetchSnapPost,
 } from '../hooks/domain/snapPost/useFetchSnapPost';
 import { useLikeSnapPost } from '../hooks/domain/snapPost/useLikeSnapPost';
+import * as ImagePicker from 'expo-image-picker';
 
 const dummyData: CreateSnapPostRequest = {
     title: '京都御所',
@@ -35,6 +36,9 @@ export const SubmitScreen = () => {
     // const { data: snapPosts } = useFetchMySnapPosts();
     const { data: snapPosts } = useFetchLikedSnapPosts();
 
+    // useState
+    const [image, setImage] = useState<string | null>(null);
+
     useEffect(() => {
         console.log('render');
         // createSnapPost(dummyData, {
@@ -57,8 +61,19 @@ export const SubmitScreen = () => {
 
     // 写真加工ボタン
     const handlePhotoEditBtn = async () => {
-        const response = await ImagePicker
-    
+        const response =
+            await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (response.granted) {
+            const pickrResult = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [4, 3],
+            });
+
+            if (!pickrResult.canceled) {
+                setImage(pickrResult.assets[0].uri);
+            }
+        }
     };
     return (
         <View>
