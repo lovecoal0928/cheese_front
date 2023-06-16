@@ -64,14 +64,14 @@ export const SubmitScreen = () => {
         const response =
             await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (response.granted) {
-            const pickrResult = await ImagePicker.launchImageLibraryAsync({
+            const pickerResult = await ImagePicker.launchImageLibraryAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.Images,
                 allowsEditing: true,
                 aspect: [4, 3],
             });
 
-            if (!pickrResult.canceled) {
-                setImage(pickrResult.assets[0].uri);
+            if (!pickerResult.canceled) {
+                setImage(pickerResult.assets[0].uri);
             }
         }
     };
