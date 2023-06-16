@@ -2455,6 +2455,11 @@
     prompts "^2.4.0"
     semver "^6.3.0"
 
+"@react-native-ml-kit/image-labeling@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@react-native-ml-kit/image-labeling/-/image-labeling-1.2.0.tgz#5beb43e841abd0cdd24afc6c555bfc113d50b852"
+  integrity sha512-kLvFjJ4eAyZ59k9ypl7kzUyxK4utrFGr5CYi0Xpp3IpV8MJYmFnJwuiCYt8RH6AS7dXms9vma2bRnd/159DBCQ==
+
 "@react-native/assets@1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@react-native/assets/-/assets-1.0.0.tgz"
