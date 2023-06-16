@@ -11,7 +11,6 @@ import {
     useFetchSnapPost,
 } from '../hooks/domain/snapPost/useFetchSnapPost';
 import { useLikeSnapPost } from '../hooks/domain/snapPost/useLikeSnapPost';
-import PhotoEditor from '@baronha/react-native-photo-editor';
 
 const dummyData: CreateSnapPostRequest = {
     title: '京都御所',
@@ -58,10 +57,8 @@ export const SubmitScreen = () => {
 
     // 写真加工ボタン
     const handlePhotoEditBtn = async () => {
-        await PhotoEditor.open({
-            path: 'https://cdn-icons-png.flaticon.com/512/5272/5272912.png',
-            stickers: [],
-        });
+        const response = await ImagePicker
+    
     };
     return (
         <View>
