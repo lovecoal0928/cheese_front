@@ -2,6 +2,7 @@ import { httpsCallable } from 'firebase/functions';
 import {
     CreateUserRequest,
     FetchUserRequest,
+    UpdateUserRequest,
     UserResponse,
     UserResponseScheme,
 } from './types';
@@ -10,6 +11,10 @@ import { functions } from '../../plugins/firebase';
 export const userRepository = {
     create: async (params: CreateUserRequest): Promise<void> => {
         await httpsCallable(functions, 'createUser')(params);
+    },
+
+    update: async (params: UpdateUserRequest): Promise<void> => {
+        await httpsCallable(functions, 'updateUser')(params);
     },
 
     fetch: async (params: FetchUserRequest): Promise<UserResponse> => {

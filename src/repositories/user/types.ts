@@ -18,6 +18,13 @@ const CreateUserRequestScheme = z.object({
 
 export type CreateUserRequest = z.infer<typeof CreateUserRequestScheme>;
 
+const UpdateUserRequestScheme = z.object({
+    name: z.string(),
+    iconPath: z.string(),
+});
+
+export type UpdateUserRequest = z.infer<typeof UpdateUserRequestScheme>;
+
 const FetchUserRequestScheme = z.object({
     userId: z.string(),
 });
