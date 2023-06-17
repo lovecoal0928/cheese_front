@@ -3,6 +3,7 @@ import {
     CreateSnapPostRequest,
     DeleteSnapPostRequest,
     FetchSnapPostRequest,
+    FetchSnapPostsByGeographyRangeRequest,
     LikeSnapPostRequest,
     SnapPostResponse,
     SnapPostResponseListScheme,
@@ -40,6 +41,16 @@ export const snapPostRepository = {
 
     fetchLiked: async (): Promise<SnapPostResponse[]> => {
         const res = await httpsCallable(functions, 'fetchLikedSnapPosts')();
+        return SnapPostResponseListScheme.parse(res.data);
+    },
+
+    fetchByGeographyRange: async (
+        params: FetchSnapPostsByGeographyRangeRequest
+    ) => {
+        const res = await httpsCallable(
+            functions,
+            'fetchSnapPostsByGeographyRange'
+        )(params);
         return SnapPostResponseListScheme.parse(res.data);
     },
 };

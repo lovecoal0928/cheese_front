@@ -77,3 +77,12 @@ const FetchSnapPostRequestScheme = z.object({
 });
 
 export type FetchSnapPostRequest = z.infer<typeof FetchSnapPostRequestScheme>;
+
+const FetchSnapPostsByGeographyRangeRequestScheme = z.object({
+    latitude: z.number(),
+    longitude: z.number(),
+});
+
+export type FetchSnapPostsByGeographyRangeRequest = z.infer<
+    typeof FetchSnapPostsByGeographyRangeRequestScheme
+>;

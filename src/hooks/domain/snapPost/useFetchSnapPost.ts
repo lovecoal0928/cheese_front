@@ -1,12 +1,17 @@
 import { UseQueryOptions, useQuery } from '@tanstack/react-query';
 import { SnapPost } from '../../../entities/SnapPost';
 import { snapPostRepository } from '../../../repositories/snapPost/snapPostRepository';
-import { SnapPostResponse } from '../../../repositories/snapPost/types';
+import {
+    FetchSnapPostsByGeographyRangeRequest,
+    SnapPostResponse,
+} from '../../../repositories/snapPost/types';
 
 const QUERY_KEYS = {
     MY: () => 'mySnapPost',
     ONE: (snaPostId: string) => `snapPost/${snaPostId}`,
     LIKED: () => 'likedSnapPost',
+    GEO_RANGE: (latitude: number, longitude: number) =>
+        `snapPost/geoRange/${latitude}-${longitude}`,
 };
 export const useFetchMySnapPosts = (
     queryOptions?: UseQueryOptions<SnapPost[]>
@@ -39,6 +44,22 @@ export const useFetchLikedSnapPosts = (
     return useQuery<SnapPost[]>(
         [QUERY_KEYS.LIKED()],
         () => snapPostRepository.fetchLiked().then((res) => res.map(converter)),
+        {
+            ...queryOptions,
+        }
+    );
+};
+
+export const useFetchSnapPostsByGeographyRange = (
+    params: FetchSnapPostsByGeographyRangeRequest,
+    queryOptions?: UseQueryOptions<SnapPost[]>
+) => {
+    return useQuery<SnapPost[]>(
+        [QUERY_KEYS.LIKED()],
+        () =>
+            snapPostRepository
+                .fetchByGeographyRange(params)
+                .then((res) => res.map(converter)),
         {
             ...queryOptions,
         }

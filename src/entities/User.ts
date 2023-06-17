@@ -4,4 +4,5 @@ export type User = {
     iconPath: string;
     resistedAt: Date;
     updatedAt: Date;
+    searchedRadiusInM: number;
 };

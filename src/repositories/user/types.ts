@@ -6,6 +6,7 @@ export const UserResponseScheme = z.object({
     iconPath: z.string(),
     resistedAt: z.string(),
     updatedAt: z.string(),
+    searchedRadiusInM: z.number(),
 });
 
 export type UserResponse = z.infer<typeof UserResponseScheme>;
@@ -16,6 +17,13 @@ const CreateUserRequestScheme = z.object({
 });
 
 export type CreateUserRequest = z.infer<typeof CreateUserRequestScheme>;
+
+const UpdateUserRequestScheme = z.object({
+    name: z.string(),
+    iconPath: z.string(),
+});
+
+export type UpdateUserRequest = z.infer<typeof UpdateUserRequestScheme>;
 
 const FetchUserRequestScheme = z.object({
     userId: z.string(),
