@@ -50,7 +50,7 @@ export const useFetchLikedSnapPosts = (
     );
 };
 
-export const fetchSnapPostsByGeographyRange = (
+export const useFetchSnapPostsByGeographyRange = (
     params: FetchSnapPostsByGeographyRangeRequest,
     queryOptions?: UseQueryOptions<SnapPost[]>
 ) => {
