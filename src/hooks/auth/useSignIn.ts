@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { authRepository } from '../../../repositories/authRepository';
+import { authRepository } from '../../repositories/authRepository';
 
 export type SignInParams = {
     email: string;
