@@ -12,6 +12,7 @@ import {
 } from '../hooks/domain/snapPost/useFetchSnapPost';
 import { useLikeSnapPost } from '../hooks/domain/snapPost/useLikeSnapPost';
 import * as ImagePicker from 'expo-image-picker';
+import { useUploadFile } from '../hooks/useUploadFile';
 
 const dummyData: CreateSnapPostRequest = {
     title: '京都御所',
@@ -28,52 +29,45 @@ const dummyData: CreateSnapPostRequest = {
 };
 const dummyId = 'f1060cf7-5673-4376-ba0d-6faac48de8fa';
 export const SubmitScreen = () => {
-    const { mutate: createSnapPost } = useCreateSnapPost();
-    const { mutate: deleteSnapPost } = useDeleteSnapPost();
-    const { mutate: updateSnapPost } = useUpdateSnapPost();
-    const { mutate: likeSnapPost } = useLikeSnapPost();
+    // const { mutate: createSnapPost } = useCreateSnapPost();
+    // const { mutate: deleteSnapPost } = useDeleteSnapPost();
+    // const { mutate: updateSnapPost } = useUpdateSnapPost();
+    // const { mutate: likeSnapPost } = useLikeSnapPost();
     // const { data: snapPost } = useFetchSnapPost(dummyId);
     // const { data: snapPosts } = useFetchMySnapPosts();
-    const { data: snapPosts } = useFetchLikedSnapPosts();
+    // const { data: snapPosts } = useFetchLikedSnapPosts();
+
+    const { mutate } = useUploadFile();
 
     // useState
     const [image, setImage] = useState<string | null>(null);
-
-    useEffect(() => {
-        console.log('render');
-        // createSnapPost(dummyData, {
-        //     onError: (error) => console.log(error),
-        // });
-        // deleteSnapPost(dummyId, {
-        //     onError: (error) => console.log(error),
-        // });
-        // updateSnapPost(
-        //     { snapPostId: dummyId, ...dummyData },
-        //     {
-        //         onError: (error) => console.log(error),
-        //     }
-        // );
-        console.log(snapPosts);
-        // likeSnapPost([dummyId], {
-        //     onError: (error) => console.log(error),
-        // });
-    }, [snapPosts]);
 
     // 写真加工ボタン
     const handlePhotoEditBtn = async () => {
         const response =
             await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (response.granted) {
-            const pickerResult = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                allowsEditing: true,
-                aspect: [4, 3],
-            });
 
-            if (!pickerResult.canceled) {
-                setImage(pickerResult.assets[0].uri);
-            }
-        }
+        if (!response.granted) return;
+
+        const pickerResult = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            base64: true,
+        });
+
+        if (pickerResult.canceled) return;
+
+        const { uri, base64 } = pickerResult.assets[0];
+        console.log(base64);
+        // // mutate(
+        // //     { base64Url: base64, folderName: 'snapPosts' },
+        // //     {
+        // //         onSuccess: (data) => console.log(data),
+        // //         onError: (error) => console.log(error),
+        // //     }
+        // // );
+        // setImage(pickerResult.assets[0].uri);
     };
     return (
         <View>
