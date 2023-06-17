@@ -6,6 +6,7 @@ export const UserResponseScheme = z.object({
     iconPath: z.string(),
     resistedAt: z.string(),
     updatedAt: z.string(),
+    searchedRadiusInM: z.number(),
 });
 
 export type UserResponse = z.infer<typeof UserResponseScheme>;
