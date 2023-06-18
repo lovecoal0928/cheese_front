@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useCreateSnapPost } from '../hooks/domain/snapPost/useCreateSnapPost';
 import { CreateSnapPostRequest } from '../repositories/snapPost/types';
@@ -12,7 +12,7 @@ import {
 } from '../hooks/domain/snapPost/useFetchSnapPost';
 import { useLikeSnapPost } from '../hooks/domain/snapPost/useLikeSnapPost';
 import * as ImagePicker from 'expo-image-picker';
-import { useUploadFile } from '../hooks/useUploadFile';
+import { useUploadFile } from '../hooks/storage/useUploadFile';
 
 const dummyData: CreateSnapPostRequest = {
     title: '京都御所',
@@ -28,6 +28,7 @@ const dummyData: CreateSnapPostRequest = {
     ],
 };
 const dummyId = 'f1060cf7-5673-4376-ba0d-6faac48de8fa';
+
 export const SubmitScreen = () => {
     // const { mutate: createSnapPost } = useCreateSnapPost();
     // const { mutate: deleteSnapPost } = useDeleteSnapPost();
@@ -40,7 +41,7 @@ export const SubmitScreen = () => {
     const { mutate } = useUploadFile();
 
     // useState
-    const [image, setImage] = useState<string | null>(null);
+    const [image, setImage] = useState<string>();
 
     // 写真加工ボタン
     const handlePhotoEditBtn = async () => {
@@ -53,21 +54,22 @@ export const SubmitScreen = () => {
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
             aspect: [4, 3],
-            base64: true,
         });
 
         if (pickerResult.canceled) return;
 
-        const { uri, base64 } = pickerResult.assets[0];
-        console.log(base64);
-        // // mutate(
-        // //     { base64Url: base64, folderName: 'snapPosts' },
-        // //     {
-        // //         onSuccess: (data) => console.log(data),
-        // //         onError: (error) => console.log(error),
-        // //     }
-        // // );
-        // setImage(pickerResult.assets[0].uri);
+        const { uri } = pickerResult.assets[0];
+
+        mutate(
+            {
+                base64Url: uri,
+                folderName: 'snapPosts',
+            },
+            {
+                onSuccess: (data) => setImage(data.fileUrl),
+                onError: (error) => console.log(error),
+            }
+        );
     };
     return (
         <View>
@@ -87,6 +89,12 @@ export const SubmitScreen = () => {
                 numberOfLines={10}
                 style={styles.textarea}
             />
+            {image && (
+                <Image
+                    source={{ uri: image }}
+                    style={{ width: 200, height: 200 }}
+                />
+            )}
             <Button
                 mode="contained"
                 icon={'camera'}

@@ -1,8 +1,6 @@
 import {
-    GoogleAuthProvider,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signInWithPopup,
 } from 'firebase/auth';
 import { auth } from '../plugins/firebase';
 
@@ -29,12 +27,5 @@ export const authRepository = {
 
     signOut: async () => {
         await auth.signOut();
-    },
-
-    singInWithGoogle: async () => {
-        const provider = new GoogleAuthProvider();
-        const userCredential = await signInWithPopup(auth, provider);
-        const user = userCredential.user;
-        return user;
     },
 };

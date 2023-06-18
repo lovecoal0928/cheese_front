@@ -1,14 +1,25 @@
-import { deleteObject, ref, uploadString } from 'firebase/storage';
+import {
+    deleteObject,
+    getDownloadURL,
+    ref,
+    uploadBytes,
+} from 'firebase/storage';
 import { storage } from '../plugins/firebase';
 
 export const storageRepository = {
-    upload: async (base64Url: string, folderName: string): Promise<string> => {
-        const storageRef = ref(storage, folderName);
-        const result = await uploadString(storageRef, base64Url, 'base64');
+    upload: async (blob: Blob, filePath: string): Promise<string> => {
+        const storageRef = ref(storage, filePath);
+        const result = await uploadBytes(storageRef, blob);
         return result.ref.fullPath;
     },
-    // delete: async (filePath: string) => {
-    //     const storageRef = ref(storage, filePath);
-    //     await storage.refFromURL(fileUrl).delete();
-    // },
+
+    getFileUrl: async (filePath: string): Promise<string> => {
+        const storageRef = ref(storage, filePath);
+        return getDownloadURL(storageRef);
+    },
+
+    delete: async (filePath: string) => {
+        const storageRef = ref(storage, filePath);
+        await deleteObject(storageRef);
+    },
 };
