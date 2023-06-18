@@ -13,6 +13,7 @@ import {
 import { useLikeSnapPost } from '../hooks/domain/snapPost/useLikeSnapPost';
 import * as ImagePicker from 'expo-image-picker';
 import { useUploadFile } from '../hooks/storage/useUploadFile';
+// import ImageLabeling from '@react-native-ml-kit/image-labeling';
 
 const dummyData: CreateSnapPostRequest = {
     title: '京都御所',
@@ -38,7 +39,7 @@ export const SubmitScreen = () => {
     // const { data: snapPosts } = useFetchMySnapPosts();
     // const { data: snapPosts } = useFetchLikedSnapPosts();
 
-    const { mutate } = useUploadFile();
+    const { mutate: uploadFile } = useUploadFile();
 
     // useState
     const [image, setImage] = useState<string>();
@@ -60,7 +61,7 @@ export const SubmitScreen = () => {
 
         const { uri } = pickerResult.assets[0];
 
-        mutate(
+        uploadFile(
             {
                 base64Url: uri,
                 folderName: 'snapPosts',
@@ -71,6 +72,12 @@ export const SubmitScreen = () => {
             }
         );
     };
+
+    // const handleLabelDetecton = async () => {
+    //     const labels = await ImageLabeling.label(image!);
+    //     console.log(labels);
+    // };
+
     return (
         <View>
             <TextInput label={'タイトル'} />
