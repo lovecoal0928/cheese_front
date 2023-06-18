@@ -13,6 +13,7 @@ import {
 import { useLikeSnapPost } from '../hooks/domain/snapPost/useLikeSnapPost';
 import * as ImagePicker from 'expo-image-picker';
 import { useUploadFile } from '../hooks/storage/useUploadFile';
+import { STORAGE_KEYS } from '../constants/storageKey';
 // import ImageLabeling from '@react-native-ml-kit/image-labeling';
 
 const dummyData: CreateSnapPostRequest = {
@@ -64,7 +65,7 @@ export const SubmitScreen = () => {
         uploadFile(
             {
                 base64Url: uri,
-                folderName: 'snapPosts',
+                folderName: STORAGE_KEYS.SNAP_POST,
             },
             {
                 onSuccess: (data) => setImage(data.fileUrl),
