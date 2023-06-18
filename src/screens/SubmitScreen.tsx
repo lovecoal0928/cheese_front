@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useCreateSnapPost } from '../hooks/domain/snapPost/useCreateSnapPost';
 import { CreateSnapPostRequest } from '../repositories/snapPost/types';
@@ -12,7 +12,8 @@ import {
 } from '../hooks/domain/snapPost/useFetchSnapPost';
 import { useLikeSnapPost } from '../hooks/domain/snapPost/useLikeSnapPost';
 import * as ImagePicker from 'expo-image-picker';
-import ImageLabeling from '@react-native-ml-kit/image-labeling';
+import { useUploadFile } from '../hooks/storage/useUploadFile';
+// import ImageLabeling from '@react-native-ml-kit/image-labeling';
 
 const dummyData: CreateSnapPostRequest = {
     title: '京都御所',
@@ -28,59 +29,54 @@ const dummyData: CreateSnapPostRequest = {
     ],
 };
 const dummyId = 'f1060cf7-5673-4376-ba0d-6faac48de8fa';
+
 export const SubmitScreen = () => {
-    const { mutate: createSnapPost } = useCreateSnapPost();
-    const { mutate: deleteSnapPost } = useDeleteSnapPost();
-    const { mutate: updateSnapPost } = useUpdateSnapPost();
-    const { mutate: likeSnapPost } = useLikeSnapPost();
+    // const { mutate: createSnapPost } = useCreateSnapPost();
+    // const { mutate: deleteSnapPost } = useDeleteSnapPost();
+    // const { mutate: updateSnapPost } = useUpdateSnapPost();
+    // const { mutate: likeSnapPost } = useLikeSnapPost();
     // const { data: snapPost } = useFetchSnapPost(dummyId);
     // const { data: snapPosts } = useFetchMySnapPosts();
-    const { data: snapPosts } = useFetchLikedSnapPosts();
+    // const { data: snapPosts } = useFetchLikedSnapPosts();
+
+    const { mutate: uploadFile } = useUploadFile();
 
     // useState
-    const [image, setImage] = useState<string | null>(null);
-
-    useEffect(() => {
-        console.log('render');
-        // createSnapPost(dummyData, {
-        //     onError: (error) => console.log(error),
-        // });
-        // deleteSnapPost(dummyId, {
-        //     onError: (error) => console.log(error),
-        // });
-        // updateSnapPost(
-        //     { snapPostId: dummyId, ...dummyData },
-        //     {
-        //         onError: (error) => console.log(error),
-        //     }
-        // );
-        console.log(snapPosts);
-        // likeSnapPost([dummyId], {
-        //     onError: (error) => console.log(error),
-        // });
-    }, [snapPosts]);
+    const [image, setImage] = useState<string>();
 
     // 写真加工ボタン
     const handlePhotoEditBtn = async () => {
         const response =
             await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (response.granted) {
-            const pickerResult = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                allowsEditing: true,
-                aspect: [4, 3],
-            });
 
-            if (!pickerResult.canceled) {
-                setImage(pickerResult.assets[0].uri);
+        if (!response.granted) return;
+
+        const pickerResult = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+        });
+
+        if (pickerResult.canceled) return;
+
+        const { uri } = pickerResult.assets[0];
+
+        uploadFile(
+            {
+                base64Url: uri,
+                folderName: 'snapPosts',
+            },
+            {
+                onSuccess: (data) => setImage(data.fileUrl),
+                onError: (error) => console.log(error),
             }
-        }
+        );
     };
 
-    const handleLabelDetecton = async () => {
-        const labels = await ImageLabeling.label(image!);
-        console.log(labels);
-    };
+    // const handleLabelDetecton = async () => {
+    //     const labels = await ImageLabeling.label(image!);
+    //     console.log(labels);
+    // };
 
     return (
         <View>
@@ -100,6 +96,12 @@ export const SubmitScreen = () => {
                 numberOfLines={10}
                 style={styles.textarea}
             />
+            {image && (
+                <Image
+                    source={{ uri: image }}
+                    style={{ width: 200, height: 200 }}
+                />
+            )}
             <Button
                 mode="contained"
                 icon={'camera'}
