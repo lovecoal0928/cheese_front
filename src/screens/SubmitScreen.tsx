@@ -12,6 +12,7 @@ import {
 } from '../hooks/domain/snapPost/useFetchSnapPost';
 import { useLikeSnapPost } from '../hooks/domain/snapPost/useLikeSnapPost';
 import * as ImagePicker from 'expo-image-picker';
+
 import { useUploadFile } from '../hooks/storage/useUploadFile';
 import { STORAGE_KEYS } from '../constants/storageKey';
 // import ImageLabeling from '@react-native-ml-kit/image-labeling';
@@ -74,10 +75,11 @@ export const SubmitScreen = () => {
         );
     };
 
-    // const handleLabelDetecton = async () => {
-    //     const labels = await ImageLabeling.label(image!);
-    //     console.log(labels);
-    // };
+    const handleLabelDetecton = async () => {
+        // const labels = await ImageLabeling.label(image!);
+        // console.log(labels);
+    };
+
 
     return (
         <View>
