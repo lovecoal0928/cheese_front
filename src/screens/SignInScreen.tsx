@@ -12,6 +12,7 @@ export const SignInScreen = () => {
 
     return (
         <SafeAreaProvider style={styles.container}>
+            <Text style={styles.header}>ログイン</Text>
             <TextInput
                 label="Email"
                 mode="flat"
@@ -51,6 +52,11 @@ const styles = StyleSheet.create({
         padding: 16,
 
         justifyContent: 'center',
+    },
+    header: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        textAlign: 'center',
     },
     text: {
         marginTop: 20,
