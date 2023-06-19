@@ -12,7 +12,7 @@ import {
 } from '../hooks/domain/snapPost/useFetchSnapPost';
 import { useLikeSnapPost } from '../hooks/domain/snapPost/useLikeSnapPost';
 import * as ImagePicker from 'expo-image-picker';
-import ImageLabeling from '@react-native-ml-kit/image-labeling';
+// import ImageLabeling from '@react-native-ml-kit/image-labeling';
 
 const dummyData: CreateSnapPostRequest = {
     title: '京都御所',
@@ -78,8 +78,8 @@ export const SubmitScreen = () => {
     };
 
     const handleLabelDetecton = async () => {
-        const labels = await ImageLabeling.label(image!);
-        console.log(labels);
+        // const labels = await ImageLabeling.label(image!);
+        // console.log(labels);
     };
 
     return (
