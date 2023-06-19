@@ -15,7 +15,6 @@ export const SignInScreen = () => {
             <Text style={styles.header}>ログイン</Text>
             <TextInput
                 label="Email"
-                mode="flat"
                 value={email}
                 onChangeText={handleEmailChange}
                 style={styles.text}
