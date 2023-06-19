@@ -1,15 +1,14 @@
 import { shuffle } from 'fast-shuffle';
-import { useFetchSnapPostsByGeographyRange } from '../../hooks/domain/snapPost/useFetchSnapPost';
 import { useLocationInformation } from '../../hooks/useLocationInformation';
+import { useMemo } from 'react';
+import { useFetchSnapPostsByGeographyRange } from '../../hooks/domain/snapPost/useFetchSnapPost';
 
 export const useHomeScreen = () => {
-    const { longitude, latitude } = useLocationInformation();
+    const { location } = useLocationInformation();
+
     const { data: snapPosts = [], isLoading: isSnapPostsLoading } =
-        useFetchSnapPostsByGeographyRange({
-            longitude,
-            latitude,
-        });
-    const sortedSnapPosts = shuffle(snapPosts);
+        useFetchSnapPostsByGeographyRange(location);
+    const sortedSnapPosts = useMemo(() => shuffle(snapPosts), [snapPosts]);
 
     return {
         snapPosts: sortedSnapPosts,

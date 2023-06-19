@@ -1,34 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import * as Location from 'expo-location';
-import { Button, SegmentedButtons, Text } from 'react-native-paper';
+import { SegmentedButtons, Text } from 'react-native-paper';
+import { useLocationInformation } from '../hooks/useLocationInformation';
 
 export const MapScreen = () => {
-    const [location, setLocation] =
-        useState<Location.LocationObjectCoords | null>(null);
-    const [errorMsg, setErrorMsg] = useState<string | null>(null);
+    const { location } = useLocationInformation();
+    const [errorMsg, setErrorMsg] = useState<string>();
 
     // 現在選択中のボタンの値を管理する
     const [selectedButton, setSelectedButton] = useState<string>('');
-
-    useEffect(() => {
-        (async () => {
-            const { status } =
-                await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                return;
-            }
-            const location = await Location.getCurrentPositionAsync({});
-            setLocation(location.coords);
-        })();
-    }, []);
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
             {
                 // 現在位置が取得できない場合はエラーを表示する
-                location !== null ? (
+                location ? (
                     <MapView
                         style={styles.mapview}
                         initialRegion={{
