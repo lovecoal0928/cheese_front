@@ -3,7 +3,11 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ActivityIndicator, StyleSheet } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
 
-export const SignInScreen = () => {
+type Props = {
+    navigation: any;
+};
+
+export const SignInScreen = ({ navigation }: Props) => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
@@ -35,7 +39,7 @@ export const SignInScreen = () => {
             </Button>
             <Button
                 mode="outlined"
-                onPress={() => console.log('Pressed')}
+                onPress={() => navigation.navigate('アカウント作成')}
                 style={styles.button2}
             >
                 新規登録
