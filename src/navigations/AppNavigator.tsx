@@ -6,7 +6,7 @@ import { SignInScreen } from '../screens/SignInScreen';
 import { OathNavigator } from './OathNavigator';
 
 export const AppNavigator = () => {
-    const user = 0;
+    const user = 1;
 
     return (
         <NavigationContainer>

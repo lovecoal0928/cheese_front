@@ -15,6 +15,11 @@ export const SignInScreen = ({ navigation }: Props) => {
     const handleEmailChange = (email: string) => setEmail(email);
     const handlePasswordChange = (password: string) => setPassword(password);
 
+    // ログインボタンを押した時の処理
+    const handleLogin = () => {
+        // ログイン処理
+    };
+
     return (
         <SafeAreaProvider style={styles.container}>
             <Text style={styles.header}>ログイン</Text>
@@ -33,7 +38,7 @@ export const SignInScreen = ({ navigation }: Props) => {
             />
             <Button
                 mode="contained"
-                onPress={() => console.log('Pressed')}
+                onPress={handleLogin}
                 style={styles.button}
             >
                 ログイン
