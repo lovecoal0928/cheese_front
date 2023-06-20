@@ -19,6 +19,7 @@ export const OathNavigator = () => {
                 component={SignUpScreen}
                 options={{
                     presentation: 'modal',
+                    headerShown: true,
                 }}
             />
         </oathStack.Navigator>

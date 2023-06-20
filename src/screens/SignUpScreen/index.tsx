@@ -12,7 +12,7 @@ export const SignUpScreen = () => {
 
     return (
         <SafeAreaProvider style={styles.container}>
-            <Text style={styles.header}>ログイン</Text>
+            <Text style={styles.header}>新規作成</Text>
             <TextInput
                 label="Email"
                 value={email}
@@ -20,7 +20,14 @@ export const SignUpScreen = () => {
                 style={styles.text}
             />
             <TextInput
-                label="Password"
+                label="パスワード"
+                value={password}
+                onChangeText={handlePasswordChange}
+                secureTextEntry
+                style={styles.text}
+            />
+            <TextInput
+                label="パスワード再入力"
                 value={password}
                 onChangeText={handlePasswordChange}
                 secureTextEntry
