@@ -2,9 +2,10 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ActivityIndicator, StyleSheet } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type Props = {
-    navigation: any;
+    navigation: StackNavigationProp<any>;
 };
 
 export const SignInScreen = ({ navigation }: Props) => {
