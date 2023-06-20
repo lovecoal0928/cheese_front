@@ -2,13 +2,23 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ActivityIndicator, StyleSheet } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-export const SignInScreen = () => {
+type Props = {
+    navigation: StackNavigationProp<any>;
+};
+
+export const SignInScreen = ({ navigation }: Props) => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     const handleEmailChange = (email: string) => setEmail(email);
     const handlePasswordChange = (password: string) => setPassword(password);
+
+    // ログインボタンを押した時の処理
+    const handleLogin = () => {
+        // ログイン処理
+    };
 
     return (
         <SafeAreaProvider style={styles.container}>
@@ -28,14 +38,14 @@ export const SignInScreen = () => {
             />
             <Button
                 mode="contained"
-                onPress={() => console.log('Pressed')}
+                onPress={handleLogin}
                 style={styles.button}
             >
                 ログイン
             </Button>
             <Button
                 mode="outlined"
-                onPress={() => console.log('Pressed')}
+                onPress={() => navigation.navigate('アカウント作成')}
                 style={styles.button2}
             >
                 新規登録
