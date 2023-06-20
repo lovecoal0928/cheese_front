@@ -31,7 +31,7 @@ export type SnapPostResponseList = z.infer<typeof SnapPostResponseListScheme>;
 
 const CreateSnapPostRequestScheme = z.object({
     title: z.string(),
-    comment: z.string(),
+    comment: z.string().optional(),
     longitude: z.number(),
     latitude: z.number(),
     postImages: z.array(
