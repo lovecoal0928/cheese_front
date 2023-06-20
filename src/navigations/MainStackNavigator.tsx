@@ -3,31 +3,33 @@ import React from 'react';
 import { MainTabNavigator } from './MainTabNavigator';
 import { SubmitScreen } from '../screens/SubmitScreen';
 import { Button } from 'react-native-paper';
+import { PAGE_NAVIGATION } from '../constants/pageNavigation';
 
 const rootStack = createStackNavigator();
 
 export const MainStackNavigator = () => {
     return (
         <rootStack.Navigator
-            initialRouteName='Main'
+            initialRouteName={PAGE_NAVIGATION.MAIN}
             screenOptions={{
                 headerShown: false,
                 presentation: 'modal',
             }}
         >
-            <rootStack.Screen name='Main' component={MainTabNavigator}
+            <rootStack.Screen
+                name={PAGE_NAVIGATION.MAIN}
+                component={MainTabNavigator}
                 options={{
-                    title: '戻る'
+                    title: '',
                 }}
             />
-            <rootStack.Screen name='Submit' component={SubmitScreen}
+            <rootStack.Screen
+                name={PAGE_NAVIGATION.SUBMIT}
+                component={SubmitScreen}
                 options={{
-                    headerShown: true,
-                    title: '新規投稿',
-                    headerRight: () =>
-                        <Button textColor='#0098fd' onPress={() => console.log('')} > 保存</Button>,
+                    title: '',
                 }}
             />
-        </rootStack.Navigator >
+        </rootStack.Navigator>
     );
 };

@@ -4,6 +4,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { MapScreen } from '../screens/MapScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 import { MyPageScreen } from '../screens/MyPageScreen';
+import { PAGE_NAVIGATION } from '../constants/pageNavigation';
 const Tab = createMaterialBottomTabNavigator();
 
 export const MainTabNavigator = () => {
@@ -14,7 +15,7 @@ export const MainTabNavigator = () => {
             barStyle={{ backgroundColor: '#fff' }}
         >
             <Tab.Screen
-                name="Home"
+                name={PAGE_NAVIGATION.HOME}
                 component={HomeScreen}
                 options={{
                     tabBarLabel: 'ホーム',
@@ -28,7 +29,7 @@ export const MainTabNavigator = () => {
                 }}
             />
             <Tab.Screen
-                name="Map"
+                name={PAGE_NAVIGATION.MAP}
                 component={MapScreen}
                 options={{
                     tabBarLabel: 'マップ',
@@ -63,7 +64,7 @@ export const MainTabNavigator = () => {
                 })}
             />
             <Tab.Screen
-                name="Route"
+                name={PAGE_NAVIGATION.ROUTE}
                 component={MapScreen}
                 options={{
                     tabBarLabel: 'ルート一覧',
@@ -77,7 +78,7 @@ export const MainTabNavigator = () => {
                 }}
             />
             <Tab.Screen
-                name="MyPage"
+                name={PAGE_NAVIGATION.MY_PAGE}
                 component={MyPageScreen}
                 options={{
                     tabBarLabel: 'マイページ',
