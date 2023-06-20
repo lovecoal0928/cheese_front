@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { SegmentedButtons, Text } from 'react-native-paper';
-import { useLocationInformation } from '../hooks/useLocationInformation';
+import { useLocationInformation } from '../../hooks/useLocationInformation';
 
 export const MapScreen = () => {
     const { location } = useLocationInformation();

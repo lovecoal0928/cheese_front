@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { SubmitCard } from '../components/myPage/SubmitCard';
+import { SubmitCard } from '../../components/myPage/SubmitCard';
 
 export const MyPageScreen = () => {
     const data = [
