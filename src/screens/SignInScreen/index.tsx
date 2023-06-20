@@ -2,13 +2,11 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ActivityIndicator, StyleSheet } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
+import { useSignInScreen } from './useSignInScreen';
 
 export const SignInScreen = () => {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-
-    const handleEmailChange = (email: string) => setEmail(email);
-    const handlePasswordChange = (password: string) => setPassword(password);
+    const { email, password, handleEmailChange, handlePasswordChange } =
+        useSignInScreen();
 
     return (
         <SafeAreaProvider style={styles.container}>
