@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSignUp } from '../../hooks/auth/useSignUp';
 import { useCreateUser } from '../../hooks/domain/user/useCreateUser';
+import { CreateUserRequest } from '../../repositories/user/types';
 
 export const useSignUpScreen = () => {
     const [email, setEmail] = React.useState('');
@@ -23,11 +24,25 @@ export const useSignUpScreen = () => {
         signUp(
             { email, password },
             {
-                onSuccess: (user) => console.log(user),
+                onSuccess: () => handleSuccessSignUp(dummyProfile),
                 onError: (error) => console.log(error),
             }
         );
-        // TODO: 新規作成後にユーザーのプロフィールを作成したい
+    };
+    const dummyProfile = {
+        name: 'ニックネーム',
+        iconPath: 'https://bit.ly/broken-link',
+    };
+
+    // TODO: 新規作成後にユーザーのプロフィールを作成したい。実装途中
+    const handleSuccessSignUp = ({ name, iconPath }: CreateUserRequest) => {
+        createUser(
+            { name, iconPath },
+            {
+                onSuccess: () => console.log('success'),
+                onError: (error) => console.log(error),
+            }
+        );
     };
 
     return {
