@@ -4,9 +4,10 @@ import { StyleSheet } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
 import { useSignInScreen } from './useSignInScreen';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../types/navigation';
 
 type Props = {
-    navigation: StackNavigationProp<any>;
+    navigation: StackNavigationProp<RootStackParamList>;
 };
 
 export const SignInScreen = ({ navigation }: Props) => {
@@ -44,7 +45,7 @@ export const SignInScreen = ({ navigation }: Props) => {
             </Button>
             <Button
                 mode="outlined"
-                onPress={() => navigation.navigate('アカウント作成')}
+                onPress={() => navigation.navigate('SignUp')}
                 style={styles.button2}
             >
                 新規登録
