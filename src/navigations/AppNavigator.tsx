@@ -1,15 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { AuthScreen } from '../screens/AuthScreen';
 import { MainStackNavigator } from './MainStackNavigator';
 import { SignInScreen } from '../screens/SignInScreen';
 
+import { useAuthUser } from '../state/authUser';
+
 export const AppNavigator = () => {
-    const user = 0;
+    const { authUser } = useAuthUser();
 
     return (
         <NavigationContainer>
-            {user ? <MainStackNavigator /> : <SignInScreen />}
+            {authUser ? <MainStackNavigator /> : <SignInScreen />}
         </NavigationContainer>
     );
 };

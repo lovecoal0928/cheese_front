@@ -1,12 +1,17 @@
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { ActivityIndicator, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
 import { useSignInScreen } from './useSignInScreen';
 
 export const SignInScreen = () => {
-    const { email, password, handleEmailChange, handlePasswordChange } =
-        useSignInScreen();
+    const {
+        email,
+        password,
+        handleEmailChange,
+        handlePasswordChange,
+        handleSubmitAccount,
+    } = useSignInScreen();
 
     return (
         <SafeAreaProvider style={styles.container}>
@@ -26,7 +31,7 @@ export const SignInScreen = () => {
             />
             <Button
                 mode="contained"
-                onPress={() => console.log('Pressed')}
+                onPress={handleSubmitAccount}
                 style={styles.button}
             >
                 ログイン
