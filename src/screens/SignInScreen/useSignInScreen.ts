@@ -10,7 +10,7 @@ export const useSignInScreen = () => {
 
     const { mutate } = useSignIn();
 
-    const handleSubmitAccount = () => {
+    const handleLogin = () => {
         if (!email || !password) return;
         mutate(
             { email, password },
@@ -27,6 +27,6 @@ export const useSignInScreen = () => {
         password,
         handleEmailChange,
         handlePasswordChange,
-        handleSubmitAccount,
+        handleLogin,
     };
 };
