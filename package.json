@@ -50,6 +50,7 @@
         "react-native-safe-area-context": "4.5.0",
         "react-native-web": "~0.18.10",
         "react-native-webview": "11.26.0",
+        "recoil": "^0.7.7",
         "uuid": "^9.0.0",
         "zod": "^3.21.4"
     },
