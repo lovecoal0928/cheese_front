@@ -5,13 +5,14 @@ import { useSubmitScreen } from './useSubmitScreen';
 // import ImageLabeling from '@react-native-ml-kit/image-labeling';
 import { Header } from './Header';
 import { Controller } from 'react-hook-form';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const SubmitScreen = () => {
     const { handlePhotoEditBtn, handleSubmitSnapPost, goBack, control } =
         useSubmitScreen();
 
     return (
-        <View>
+        <SafeAreaView style={styles.safeArea}>
             <Header submit={handleSubmitSnapPost} goBack={goBack} />
             <Divider />
 
@@ -86,11 +87,16 @@ export const SubmitScreen = () => {
             >
                 写真を追加
             </Button>
-        </View>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
+    safeArea: {
+        backgroundColor: '#fff',
+        height: '100%',
+    },
+
     textarea: {
         height: 200,
     },
