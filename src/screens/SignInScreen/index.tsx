@@ -22,12 +22,13 @@ export const SignInScreen = ({ navigation }: Props) => {
     return (
         <SafeAreaProvider style={styles.container}>
             <Text style={styles.header}>ログイン</Text>
-            {/* TODO: 最初の文字が大文字になるを修正する */}
+
             <TextInput
                 label="Email"
                 value={email}
                 onChangeText={handleEmailChange}
                 style={styles.text}
+                autoCapitalize="none"
             />
             <TextInput
                 label="Password"
