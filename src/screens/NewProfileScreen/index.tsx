@@ -1,55 +1,36 @@
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
-import { useSignInScreen } from './useSignInScreen';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../types/navigation';
+import { useNewProfileScreen } from './useNewProfileScreen';
 
 type Props = {
     navigation: StackNavigationProp<RootStackParamList>;
 };
 
-export const SignInScreen = ({ navigation }: Props) => {
-    const {
-        email,
-        password,
-        handleEmailChange,
-        handlePasswordChange,
-        handleLogin,
-    } = useSignInScreen();
+export const NewProfileScreen = () => {
+    const { name, handleChangeName, handleSubmit } = useNewProfileScreen();
 
+    // TODO: フォームのエラーハンドリングを実装
     return (
         <SafeAreaProvider style={styles.container}>
-            <Text style={styles.header}>ログイン</Text>
+            <Text style={styles.header}>プロフィール作成</Text>
 
             <TextInput
-                label="Email"
-                value={email}
-                onChangeText={handleEmailChange}
+                label="名前"
+                value={name}
+                onChangeText={handleChangeName}
                 style={styles.text}
                 autoCapitalize="none"
             />
-            <TextInput
-                label="Password"
-                value={password}
-                onChangeText={handlePasswordChange}
-                secureTextEntry
-                style={styles.text}
-            />
             <Button
                 mode="contained"
-                onPress={handleLogin}
+                onPress={handleSubmit}
                 style={styles.button}
             >
-                ログイン
-            </Button>
-            <Button
-                mode="outlined"
-                onPress={() => navigation.navigate('SignUp')}
-                style={styles.button2}
-            >
-                新規登録
+                新規作成
             </Button>
         </SafeAreaProvider>
     );

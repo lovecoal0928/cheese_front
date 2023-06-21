@@ -6,5 +6,6 @@ export type RootStackParamList = {
     MyPage: undefined;
     SignIn: undefined;
     SignUp: undefined;
+    NewProfile: undefined;
     Main: undefined;
 };

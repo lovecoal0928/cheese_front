@@ -4,18 +4,18 @@ import { SignInScreen } from '../screens/SignInScreen';
 import { SignUpScreen } from '../screens/SignUpScreen';
 import { PAGE_NAVIGATION } from '../constants/pageNavigation';
 
-const oathStack = createStackNavigator();
+const authStack = createStackNavigator();
 
 export const AuthNavigator = () => {
     return (
-        <oathStack.Navigator
+        <authStack.Navigator
             initialRouteName={PAGE_NAVIGATION.SIGN_IN}
             screenOptions={{
                 headerShown: false,
             }}
         >
-            <oathStack.Screen name={'SignIn'} component={SignInScreen} />
-            <oathStack.Screen
+            <authStack.Screen name={'SignIn'} component={SignInScreen} />
+            <authStack.Screen
                 name={'SignUp'}
                 component={SignUpScreen}
                 options={{
@@ -23,6 +23,6 @@ export const AuthNavigator = () => {
                     headerShown: true,
                 }}
             />
-        </oathStack.Navigator>
+        </authStack.Navigator>
     );
 };
