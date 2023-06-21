@@ -16,7 +16,7 @@ export const AuthNavigator = () => {
         >
             <oathStack.Screen name={'SignIn'} component={SignInScreen} />
             <oathStack.Screen
-                name={'SingUp'}
+                name={'SignUp'}
                 component={SignUpScreen}
                 options={{
                     presentation: 'modal',
