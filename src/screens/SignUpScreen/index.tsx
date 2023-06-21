@@ -3,21 +3,31 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ActivityIndicator, StyleSheet } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useSignUpScreen } from './useSignUpScreen';
+import { RootStackParamList } from '../../types/navigation';
 
 type Props = {
-    navigation: StackNavigationProp<any>;
+    navigation: StackNavigationProp<RootStackParamList>;
 };
 
 export const SignUpScreen = ({ navigation }: Props) => {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
+    const {
+        handleEmailChange,
+        handlePasswordChange,
+        handlePasswordForConfirmation,
+        handleCreateAccount,
 
-    const handleEmailChange = (email: string) => setEmail(email);
-    const handlePasswordChange = (password: string) => setPassword(password);
+        email,
+        password,
+        passwordForConfirmation,
+    } = useSignUpScreen();
+
+    // TODO: フォームのエラーハンドリングを実装
 
     return (
         <SafeAreaProvider style={styles.container}>
             <Text style={styles.header}>新規作成</Text>
+            {/* TODO: 最初の文字が大文字になるを修正する */}
             <TextInput
                 label="Email"
                 value={email}
@@ -33,21 +43,21 @@ export const SignUpScreen = ({ navigation }: Props) => {
             />
             <TextInput
                 label="パスワード再入力"
-                value={password}
-                onChangeText={handlePasswordChange}
+                value={passwordForConfirmation}
+                onChangeText={handlePasswordForConfirmation}
                 secureTextEntry
                 style={styles.text}
             />
             <Button
                 mode="contained"
-                onPress={() => console.log('Pressed')}
+                onPress={handleCreateAccount}
                 style={styles.button}
             >
-                ログイン
+                新規作成
             </Button>
             <Button
                 mode="outlined"
-                onPress={() => navigation.navigate('ログイン')}
+                onPress={() => navigation.navigate('SignIn')}
                 style={styles.button2}
             >
                 戻る

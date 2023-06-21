@@ -1,28 +1,28 @@
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { ActivityIndicator, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
+import { useSignInScreen } from './useSignInScreen';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../types/navigation';
 
 type Props = {
-    navigation: StackNavigationProp<any>;
+    navigation: StackNavigationProp<RootStackParamList>;
 };
 
 export const SignInScreen = ({ navigation }: Props) => {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-
-    const handleEmailChange = (email: string) => setEmail(email);
-    const handlePasswordChange = (password: string) => setPassword(password);
-
-    // ログインボタンを押した時の処理
-    const handleLogin = () => {
-        // ログイン処理
-    };
+    const {
+        email,
+        password,
+        handleEmailChange,
+        handlePasswordChange,
+        handleLogin,
+    } = useSignInScreen();
 
     return (
         <SafeAreaProvider style={styles.container}>
             <Text style={styles.header}>ログイン</Text>
+            {/* TODO: 最初の文字が大文字になるを修正する */}
             <TextInput
                 label="Email"
                 value={email}
@@ -45,7 +45,7 @@ export const SignInScreen = ({ navigation }: Props) => {
             </Button>
             <Button
                 mode="outlined"
-                onPress={() => navigation.navigate('アカウント作成')}
+                onPress={() => navigation.navigate('SignUp')}
                 style={styles.button2}
             >
                 新規登録

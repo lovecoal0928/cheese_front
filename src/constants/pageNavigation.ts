@@ -5,4 +5,6 @@ export const PAGE_NAVIGATION = {
     SUBMIT: 'Submit',
     ROUTE: 'Route',
     MY_PAGE: 'MyPage',
+    SIGN_IN: 'SignIn',
+    SIGN_UP: 'SignUp',
 };
