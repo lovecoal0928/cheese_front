@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSignUp } from '../../hooks/auth/useSignUp';
+import { useCreateUser } from '../../hooks/domain/user/useCreateUser';
 
 export const useSignUpScreen = () => {
     const [email, setEmail] = React.useState('');
@@ -8,6 +9,7 @@ export const useSignUpScreen = () => {
         React.useState('');
 
     const { mutate: signUp } = useSignUp();
+    const { mutate: createUser } = useCreateUser();
 
     const handleEmailChange = (email: string) => setEmail(email);
     const handlePasswordChange = (password: string) => setPassword(password);
@@ -25,6 +27,7 @@ export const useSignUpScreen = () => {
                 onError: (error) => console.log(error),
             }
         );
+        // TODO: 新規作成後にユーザーのプロフィールを作成したい
     };
 
     return {
